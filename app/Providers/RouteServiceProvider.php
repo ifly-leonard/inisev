@@ -19,6 +19,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/home';
 
+
+    /**
+     *
+     * The API version that's provided in all the JSON responses
+     *
+    */
+
+    public const API_VERSION = 'v1';
+
     /**
      * The controller namespace for the application.
      *
