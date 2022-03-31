@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Website;
 use App\Providers\RouteServiceProvider;
 
 /**
@@ -68,7 +69,7 @@ class GetDataController extends Controller
     /**
      * posts - returns all the posts
      *
-     * @return posts
+     * @return json
      */
     public function posts() {
         $response = collect([
@@ -76,6 +77,22 @@ class GetDataController extends Controller
             'message' => 'All the posts present in '. config('app.name'),
             'api_version' => self::VERSION,
             'model_data' => Post::paginate(self::PAGINATION),
+        ]);
+
+        return response()->json($response);
+    }
+
+     /**
+     * websites - returns all the websites
+     *
+     * @return json
+     */
+    public function websites() {
+        $response = collect([
+            'success' => true,
+            'message' => 'All the websites present in '. config('app.name'),
+            'api_version' => self::VERSION,
+            'model_data' => Website::paginate(self::PAGINATION),
         ]);
 
         return response()->json($response);

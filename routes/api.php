@@ -13,6 +13,7 @@ Route::prefix('v1')->name('api.v1.')->group(function() {
     Route::prefix('getdata')->name('getdata.')->group(function() {
         Route::get('/users', [GetDataController::class, 'users'])->name('users');
         Route::get('/posts', [GetDataController::class, 'posts'])->name('posts');
+        Route::get('/websites', [GetDataController::class, 'websites'])->name('websites');
         Route::get('/subscriptions', [GetDataController::class, 'subscriptions'])->name('subscriptions');
     });
 
