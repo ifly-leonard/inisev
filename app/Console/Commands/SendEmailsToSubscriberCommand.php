@@ -50,7 +50,9 @@ class SendEmailsToSubscriberCommand extends Command
             $website = Website::find($company);
 
             $all_subscribers = Subscription::where('website_id', $website->id)->get();
-            $post = Post::latest()->get();
+            $post = Post::latest()->first();
+
+
 
             $this->info('Attempting to send the latest post of '. $website->name.' ('.$website->url.') to ' . count($all_subscribers));
 

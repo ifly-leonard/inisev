@@ -31,8 +31,6 @@ class PostListener
     public function handle(PostEvent $event)
     {
 
-
-
         # Find the website the post was made to
         $website = Website::find($event->post->website_id);
         $post = Post::find($event->post->id);
@@ -48,7 +46,7 @@ class PostListener
                 'user' => $subscribers->user,
                 'post' => $post,
                 'website' => $website,
-            ];
+            ]; # We're passing all the vars as a single object, so that we don't have to pass multiple things.
 
 
             SendEmailNotificationsForSubscribers::dispatch($data);
