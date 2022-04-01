@@ -4,11 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Subscription;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Website;
-use App\Providers\RouteServiceProvider;
+use App\Models\Subscription;
+use App\Http\Controllers\Controller;
+use App\Providers\APIServiceProvider;
 
 /**
  *
@@ -24,7 +23,7 @@ class GetDataController extends Controller
      * API Version number, returned from RouteServiceProvider.
      *
      */
-    public CONST VERSION = RouteServiceProvider::API_VERSION;
+    public CONST VERSION = APIServiceProvider::API_VERSION;
 
 
     /**

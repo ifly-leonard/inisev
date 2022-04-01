@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Models\Post;
 use App\Models\Website;
+use App\Models\EmailLog;
 use App\Events\PostEvent;
 use App\Models\Subscription;
 use Illuminate\Queue\InteractsWithQueue;
@@ -20,6 +21,35 @@ class PostListener
     public function __construct()
     {
         //
+    }
+
+    /**
+     * check_if_email_was_already_sent - This returns an integer, but should be 0 if all conditions are favorable.
+     *
+     * @return integer
+     */
+    public function check_if_email_was_already_sent($data) {
+        return EmailLog::where([
+            'post_id' => $data->post->id,
+            'website_id' => $data->website->id,
+            'user_id' => $data->user->id,
+        ])->count();
+    }
+
+    /**
+     * create_entry_for_email - Add the email entry into the database.
+     *
+     * @return void
+     */
+    public function create_entry_for_email($data) {
+
+        $email = new EmailLog;
+        $email->post_id = $data->post->id;
+        $email->website_id = $data->website->id;
+        $email->user_id = $data->user->id;
+        $email->save();
+
+        return $email->id;
     }
 
     /**
@@ -49,7 +79,12 @@ class PostListener
             ]; # We're passing all the vars as a single object, so that we don't have to pass multiple things.
 
 
-            SendEmailNotificationsForSubscribers::dispatch($data);
+
+            if($this->check_if_email_was_already_sent($data) == 0) {
+                # Add entries to the db
+                $this->create_entry_for_email($data);
+                SendEmailNotificationsForSubscribers::dispatch($data);
+            }
         }
     }
 }

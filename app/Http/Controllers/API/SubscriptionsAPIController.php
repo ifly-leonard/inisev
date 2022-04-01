@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\StoreSubscriptionRequest;
+use App\Providers\APIServiceProvider;
 
 /**
  *
@@ -23,15 +24,15 @@ class SubscriptionsAPIController extends Controller
 
      /**
      *
-     * API Version number, returned from RouteServiceProvider.
+     * API Version number, returned from APIServiceProvider.
      *
      */
-    public CONST VERSION = RouteServiceProvider::API_VERSION;
+    public CONST VERSION = APIServiceProvider::API_VERSION;
 
 
     /**
      * The pagination value for each response.
-     */
+    */
 
     public CONST PAGINATION = 5;
 

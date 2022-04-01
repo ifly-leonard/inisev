@@ -21,14 +21,6 @@ class RouteServiceProvider extends ServiceProvider
 
 
     /**
-     *
-     * The API version that's provided in all the JSON responses
-     *
-    */
-
-    public const API_VERSION = 'v1';
-
-    /**
      * The controller namespace for the application.
      *
      * When present, controller route declarations will automatically be prefixed with this namespace.

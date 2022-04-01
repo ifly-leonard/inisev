@@ -2,16 +2,32 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Events\PostEvent;
 use App\Models\Post;
 use App\Models\Website;
+use App\Events\PostEvent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Providers\APIServiceProvider;
 use App\Http\Requests\StorePostRequest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+/**
+ *
+ * An API controller that creates a post and dispatches an event.
+ *
+ **/
+
 class PostsAPIController extends Controller
 {
+
+
+    /**
+     *
+     * API Version number, returned from APIServiceProvider.
+     *
+     */
+    public CONST VERSION = APIServiceProvider::API_VERSION;
+
 
 
     /**
@@ -36,6 +52,7 @@ class PostsAPIController extends Controller
 
         return response()->json([
             'success' => true,
+            'api_version' => self::VERSION,
             'message' => 'Post has been created for website: '.$website->url,
             'post_id' => $post->id,
         ]);
