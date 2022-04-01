@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Website;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -16,6 +17,7 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->text(15),
             'description' => $this->faker->sentence(30),
+            'website_id' => Website::inRandomOrder()->first()->id,
         ];
     }
 }
