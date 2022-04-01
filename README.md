@@ -1,7 +1,15 @@
 # Inisev Task 
 ## Done by Leonard Selvaraja 
 
-The app is created with SOLID principles in mind along with the brief that has been provided. 
+The app is created with SOLID principles in mind along with the brief that has been provided. The app uses Models, Validations, Migrations, Factories, Seeders, Jobs, Queues, Mailables, Markdown, Events and Listeners. All methods of all classes are well-commented with PHPDoc format.
+
+To setup the app, first clone it and then run
+    `composer install`
+    `cp .env.example .env`
+    `php artisan key:generate`
+    `php artisan migrate --seed`
+
+The app is included with seeders that will generate Faker data into the database.
 
 ### As per the brief, the goals were:
 
@@ -19,3 +27,6 @@ an email with the post title and description in it. (no authentication of any ki
 - Use of queues to schedule sending in background. ☑️
 - No duplicate stories should get sent to subscribers. ☑️
 - Deploy the code on a public github repository. ☑️
+
+
+![image](https://user-images.githubusercontent.com/29737466/161173879-d48f158f-76eb-423e-9655-bce20d55b2b9.png)
